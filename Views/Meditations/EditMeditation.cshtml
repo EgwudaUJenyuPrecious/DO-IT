@@ -1,0 +1,57 @@
+﻿@model Doit.Models.Meditation
+
+@{
+    ViewData["Title"] = "EditMeditation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h4>Meditation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <label>@ViewData["msg"] </label>
+        <form asp-action="EditMeditation" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"> Meditation</label>
+                <textarea asp-for="Description" class="form-control" placeholder="What's on your mind?" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VideoFile" class="control-label"></label>
+                <input type="file"  asp-for="VideoFile" class="form-control" />
+                <span asp-validation-for="VideoFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AudioFile" class="control-label"></label>
+                <input type="file" asp-for="AudioFile" class="form-control" />
+                <span asp-validation-for="AudioFile" class="text-danger"></span>
+            </div>
+            <input type="hidden"  asp-for="AudioUrl"/>
+            <input type="hidden"  asp-for="VideoUrl"/>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
